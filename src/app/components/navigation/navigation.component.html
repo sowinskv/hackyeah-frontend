@@ -1,0 +1,100 @@
+<nav
+  class="fixed top-0 left-0 right-0 z-50 bg-zus-bg/90 backdrop-blur-lg border-b border-white/10"
+>
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <div
+          class="w-8 h-8 bg-zus-orange rounded-lg flex items-center justify-center"
+        >
+          <span class="text-zus-black font-bold text-lg">Z</span>
+        </div>
+        <span class="text-xl font-bold text-white">ZUS Simulator</span>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a
+          (click)="navigateTo('')"
+          class="text-white/80 hover:text-zus-orange cursor-pointer transition-colors"
+        >
+          Strona główna
+        </a>
+        <a
+          (click)="navigateTo('calculator')"
+          class="text-white/80 hover:text-zus-orange cursor-pointer transition-colors"
+        >
+          Kalkulator
+        </a>
+        <a
+          (click)="navigateTo('profile')"
+          class="text-white/80 hover:text-zus-orange cursor-pointer transition-colors"
+        >
+          Profil
+        </a>
+        <button (click)="navigateTo('auth')" class="btn-primary">
+          Zaloguj się
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        (click)="toggleMenu()"
+        class="md:hidden p-2 text-white focus:outline-none focus:ring-2 focus:ring-zus-orange rounded-lg"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            *ngIf="!isMenuOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+          <path
+            *ngIf="isMenuOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div
+      *ngIf="isMenuOpen"
+      class="md:hidden mt-4 py-4 border-t border-white/10 fade-in"
+    >
+      <div class="flex flex-col space-y-4">
+        <a
+          (click)="navigateTo('')"
+          class="text-white/80 hover:text-zus-orange cursor-pointer transition-colors py-2"
+        >
+          Strona główna
+        </a>
+        <a
+          (click)="navigateTo('calculator')"
+          class="text-white/80 hover:text-zus-orange cursor-pointer transition-colors py-2"
+        >
+          Kalkulator
+        </a>
+        <a
+          (click)="navigateTo('profile')"
+          class="text-white/80 hover:text-zus-orange cursor-pointer transition-colors py-2"
+        >
+          Profil
+        </a>
+        <button (click)="navigateTo('auth')" class="btn-primary w-full mt-4">
+          Zaloguj się
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

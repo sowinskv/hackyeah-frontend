@@ -1,0 +1,29 @@
+/* User profile specific styles */
+.form-input:disabled,
+.form-input.opacity-60 {
+  background-color: rgba(255, 255, 255, 0.05);
+  cursor: not-allowed;
+}
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+}
+
+table tbody tr:hover {
+  transition: background-color 0.2s ease;
+}
+
+/* Profile avatar */
+.profile-avatar {
+  background: linear-gradient(135deg, rgb(255, 179, 79), rgb(255, 200, 120));
+}
+
+/* Stats cards */
+.stats-card {
+  transition: transform 0.2s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-2px);
+}

@@ -1,0 +1,32 @@
+/* Auth page specific styles */
+.form-input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 179, 79, 0.2);
+}
+
+.form-input.border-zus-red {
+  border-color: rgb(240, 94, 94);
+}
+
+.form-input.border-zus-red:focus {
+  box-shadow: 0 0 0 2px rgba(240, 94, 94, 0.2);
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Social button styles */
+button svg {
+  transition: transform 0.2s ease;
+}
+
+button:hover svg {
+  transform: scale(1.1);
+}

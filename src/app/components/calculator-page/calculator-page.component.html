@@ -1,0 +1,313 @@
+<div class="min-h-screen pt-20 px-4">
+  <div class="container mx-auto max-w-4xl">
+    <h1 class="text-4xl font-bold text-center text-white mb-8">
+      Kalkulator <span class="text-zus-orange">Emerytury</span>
+    </h1>
+
+    <!-- Progress Bar -->
+    <div class="mb-8">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm text-white/70"
+          >Krok {{ currentStep }} z {{ totalSteps }}</span
+        >
+        <span class="text-sm text-white/70"
+          >{{ Math.round((currentStep / totalSteps) * 100) }}%</span
+        >
+      </div>
+      <div class="w-full bg-white/10 rounded-full h-2">
+        <div
+          class="bg-zus-orange h-2 rounded-full transition-all duration-300"
+          [style.width.%]="(currentStep / totalSteps) * 100"
+        ></div>
+      </div>
+    </div>
+
+    <form
+      [formGroup]="calculatorForm"
+      (ngSubmit)="calculatePension()"
+      class="space-y-8"
+    >
+      <!-- Step 1: Basic Information -->
+      <div *ngIf="currentStep === 1" class="card fade-in">
+        <h2 class="text-2xl font-semibold text-white mb-6">
+          Podstawowe informacje
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="form-label">Wiek</label>
+            <input
+              type="number"
+              formControlName="age"
+              class="form-input"
+              placeholder="Wprowadź swój wiek"
+            />
+            <div
+              *ngIf="getErrorMessage('age')"
+              class="text-zus-red text-sm mt-1"
+            >
+              {{ getErrorMessage("age") }}
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label">Płeć</label>
+            <select formControlName="gender" class="form-input">
+              <option value="male">Mężczyzna</option>
+              <option value="female">Kobieta</option>
+            </select>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="form-label">Obecne wynagrodzenie brutto (PLN)</label>
+            <input
+              type="number"
+              formControlName="currentSalary"
+              class="form-input"
+              placeholder="Wprowadź obecne wynagrodzenie"
+            />
+            <div
+              *ngIf="getErrorMessage('currentSalary')"
+              class="text-zus-red text-sm mt-1"
+            >
+              {{ getErrorMessage("currentSalary") }}
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end mt-6">
+          <button type="button" (click)="nextStep()" class="btn-primary">
+            Następny krok
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Work History -->
+      <div *ngIf="currentStep === 2" class="card fade-in">
+        <h2 class="text-2xl font-semibold text-white mb-6">
+          Historia zawodowa
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="form-label">Rok rozpoczęcia pracy</label>
+            <input
+              type="number"
+              formControlName="workStartYear"
+              class="form-input"
+              placeholder="np. 2010"
+            />
+            <div
+              *ngIf="getErrorMessage('workStartYear')"
+              class="text-zus-red text-sm mt-1"
+            >
+              {{ getErrorMessage("workStartYear") }}
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label">Planowany wiek emerytury</label>
+            <input
+              type="number"
+              formControlName="plannedRetirementAge"
+              class="form-input"
+              placeholder="np. 65"
+            />
+            <div
+              *ngIf="getErrorMessage('plannedRetirementAge')"
+              class="text-zus-red text-sm mt-1"
+            >
+              {{ getErrorMessage("plannedRetirementAge") }}
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-between mt-6">
+          <button type="button" (click)="previousStep()" class="btn-secondary">
+            Poprzedni krok
+          </button>
+          <button type="button" (click)="nextStep()" class="btn-primary">
+            Następny krok
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Additional Options -->
+      <div *ngIf="currentStep === 3" class="card fade-in">
+        <h2 class="text-2xl font-semibold text-white mb-6">Dodatkowe opcje</h2>
+
+        <div class="space-y-6">
+          <div>
+            <label class="form-label">Obecne środki w ZUS (PLN)</label>
+            <input
+              type="number"
+              formControlName="currentZUSFunds"
+              class="form-input"
+              placeholder="0"
+            />
+            <p class="text-sm text-white/60 mt-1">
+              Pozostaw puste jeśli nie znasz kwoty
+            </p>
+          </div>
+
+          <div>
+            <label class="form-label"
+              >Przewidywany roczny wzrost pensji (%)</label
+            >
+            <input
+              type="number"
+              formControlName="salaryGrowthRate"
+              class="form-input"
+              placeholder="3"
+            />
+            <p class="text-sm text-white/60 mt-1">
+              Średni wzrost wynagrodzeń w gospodarce to około 3-5%
+            </p>
+          </div>
+
+          <div>
+            <label class="form-label">Pożądana wysokość emerytury (PLN)</label>
+            <input
+              type="number"
+              formControlName="desiredPension"
+              class="form-input"
+              placeholder="3000"
+            />
+          </div>
+
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              formControlName="includeSickLeave"
+              class="w-4 h-4 text-zus-orange bg-white/10 border-white/20 rounded focus:ring-zus-orange"
+            />
+            <label class="ml-2 text-white/80"
+              >Uwzględnij okresy chorobowe</label
+            >
+          </div>
+        </div>
+
+        <div class="flex justify-between mt-6">
+          <button type="button" (click)="previousStep()" class="btn-secondary">
+            Poprzedni krok
+          </button>
+          <button
+            type="submit"
+            [disabled]="isCalculating"
+            class="btn-primary flex items-center space-x-2"
+          >
+            <span *ngIf="!isCalculating">Oblicz emeryturę</span>
+            <span *ngIf="isCalculating" class="flex items-center space-x-2">
+              <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              <span>Obliczanie...</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div *ngIf="results && !isCalculating" class="space-y-6 fade-in">
+        <div class="card">
+          <h2 class="text-3xl font-semibold text-white mb-6 text-center">
+            Twoje wyniki <span class="text-zus-orange">symulacji</span>
+          </h2>
+
+          <!-- Main Result -->
+          <div class="text-center mb-8">
+            <div class="text-5xl font-bold text-zus-orange mb-2">
+              {{ results.grossPension }} zł
+            </div>
+            <div class="text-white/70 text-lg">
+              Prognozowana emerytura brutto
+            </div>
+            <div class="text-2xl text-white mt-2">
+              {{ results.netPension }} zł netto
+            </div>
+          </div>
+
+          <!-- Key Metrics -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="text-center">
+              <div class="text-2xl font-semibold text-zus-blue">
+                {{ results.replacementRate }}%
+              </div>
+              <div class="text-white/70">Stopa zastąpienia</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-semibold text-zus-green">
+                {{ results.workYears }}
+              </div>
+              <div class="text-white/70">Lat pracy</div>
+            </div>
+            <div class="text-center">
+              <div
+                class="text-2xl font-semibold"
+                [class.text-zus-green]="results.pensionComparison > 0"
+                [class.text-zus-red]="results.pensionComparison < 0"
+              >
+                {{ results.pensionComparison > 0 ? "+" : ""
+                }}{{ results.pensionComparison }}%
+              </div>
+              <div class="text-white/70">vs. średnia krajowa</div>
+            </div>
+          </div>
+
+          <!-- Delayed Retirement Benefits -->
+          <div class="bg-white/5 rounded-lg p-6 mb-6">
+            <h3 class="text-lg font-semibold text-white mb-4">
+              Korzyści z opóźnienia emerytury
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="text-center">
+                <div class="text-xl font-semibold text-zus-orange">
+                  {{ results.delayBenefits.oneYear }} zł
+                </div>
+                <div class="text-sm text-white/70">+1 rok</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xl font-semibold text-zus-orange">
+                  {{ results.delayBenefits.twoYears }} zł
+                </div>
+                <div class="text-sm text-white/70">+2 lata</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xl font-semibold text-zus-orange">
+                  {{ results.delayBenefits.fiveYears }} zł
+                </div>
+                <div class="text-sm text-white/70">+5 lat</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              type="button"
+              (click)="saveSimulation()"
+              class="btn-primary"
+            >
+              Zapisz symulację
+            </button>
+            <button type="button" (click)="resetForm()" class="btn-secondary">
+              Nowa symulacja
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

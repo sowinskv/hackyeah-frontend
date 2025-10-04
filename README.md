@@ -1,6 +1,6 @@
 # ZUS Retirement Simulator (Frontend)
 
-[cite\_start]This is the frontend for the ZUS Retirement Simulator, a 24-hour project for the HackYeah 2025 hackathon[cite: 181, 182, 183]. [cite\_start]We're building a simple, educational web tool to help people in Poland forecast their future pension[cite: 11, 12, 13].
+This is the frontend for the ZUS Retirement Simulator, a 24-hour project for the HackYeah 2025 hackathon. We're building a simple, educational web tool to help people in Poland forecast their future pension.
 
 ---
 
@@ -17,19 +17,19 @@
 
 ### Initial View
 
-- [cite\_start]An input for the user's desired pension amount[cite: 36].
-- [cite\_start]A chart showing average pensions with hover-over details for different groups[cite: 38].
-- [cite\_start]A component that displays a random "did you know?" fact about pensions[cite: 39].
+- An input for the user's desired pension amount.
+- A chart showing average pensions with hover-over details for different groups.
+- A component that displays a random "did you know?" fact about pensions.
 
 ### Simulation Form
 
-- [cite\_start]Inputs for age, sex, gross salary, and start/end work years[cite: 44, 45, 46, 47, 48].
-- [cite\_start]Optional inputs for funds already accumulated in ZUS and a toggle to factor in sick leave[cite: 50, 51].
+- Inputs for age, sex, gross salary, and start/end work years.
+- Optional inputs for funds already accumulated in ZUS and a toggle to factor in sick leave[cite: 50, 51].
 
 ### Results Page
 
-- [cite\_start]Shows the final forecast as both an _actual_ amount and a _real_ (inflation-adjusted) amount[cite: 58, 59, 60].
-- [cite\_start]Compares the user's forecast to the projected average and shows their replacement rate[cite: 61].
+- Shows the final forecast as both an _actual_ amount and a _real_ (inflation-adjusted) amount[cite: 58, 59, 60].
+- Compares the user's forecast to the projected average and shows their replacement rate[cite: 61].
 - [cite\_start]Calculates how the pension would increase if retirement is delayed by 1, 2, or 5 years[cite: 62, 63].
 - [cite\_start]If the forecast is below the user's goal, it shows how much longer they'd need to work[cite: 65].
 

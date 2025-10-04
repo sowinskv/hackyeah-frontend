@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZUS - Symulator emerytalny</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ballet&family=DM+Sans:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">ZUS - Symulator emerytalny</div>
+      <nav class="nav-links">
+        <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">ABOUT</a></li>
+          <li><a href="signup.html">SIGN UP</a></li>
+        </ul>
+        <ul>
+          <li><a href="calculator.html">CALCULATOR</a></li>
+          <li><a href="login.html">LOGIN</a></li>
+        </ul>
+      </nav>
+      <div class="contact-info">
+        AVAILABLE FOR YOU <br />
+        <span>ZUS@ME</span> <br />
+        <a href="#">SEND INFORMATION INQUIRY</a>
+      </div>
+    </header>
+
+    <main class="hero-section">
+      <div class="hero-text-left">
+        <p>PLANNER TWOJEJ PRZYSZLOSCI</p>
+        <p>
+          OBLICZ SWOJA EMERYTURE<br />
+          BAZUJAC NA SWOIM STYLU ZYCIA
+        </p>
+      </div>
+      <div class="hero-graphic-container">
+        <div id="chart-container"></div>
+      </div>
+      <div class="scroll-indicator">
+        <p>SCROLL DOWN TO EXPLORE</p>
+        <div class="arrow-down"></div>
+      </div>
+    </main>
+
+    <div class="combined-section-wrapper">
+      <section class="decorative-section">
+        <div class="decorative-text">
+          SUPER, ŻE JESTEŚ
+          <span id="typing-text" class="typing-cursor"></span>
+        </div>
+      </section>
+
+      <section class="final-cta-section">
+        <div class="cta-buttons-container">
+          <a href="calculator.html" class="cta-link primary-cta">
+            <h2>Przejdź do kalkulatora</h2>
+          </a>
+          <a href="signup.html" class="cta-link secondary-cta">
+            <h2>Utwórz konto</h2>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

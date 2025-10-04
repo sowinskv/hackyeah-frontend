@@ -48,6 +48,7 @@ This is the frontend for the ZUS Retirement Simulator, a 24-hour project for the
 
 - [cite\_start]`rgb(255, 179, 79)` [cite: 19]
 - [cite\_start]`rgb(0, 153, 63)` [cite: 21]
+- #185b3a
 - [cite\_start]`rgb(190, 195, 206)` [cite: 23]
 - [cite\_start]`rgb(63, 132, 210)` [cite: 25]
 - [cite\_start]`rgb(0, 65, 110)` [cite: 27]

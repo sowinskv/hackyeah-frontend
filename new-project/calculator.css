@@ -1,0 +1,323 @@
+body {
+  margin: 0;
+  font-family: "DM Sans", Arial, sans-serif;
+  color: #fff;
+  background-color: #201f28;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 50px;
+  background-color: transparent;
+  position: fixed;
+  width: calc(100% - 100px);
+  top: 0;
+  z-index: 1000;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 80px;
+}
+
+.nav-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links ul li {
+  margin-bottom: 5px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.contact-info {
+  text-align: right;
+  line-height: 1.5;
+}
+
+.contact-info span {
+  font-weight: bold;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.calculator-container {
+  width: 100%;
+  max-width: 700px;
+  background-color: transparent;
+  box-shadow: none;
+  margin-top: 100px;
+}
+
+/* NEW: Initial Mode Selection Screen */
+#mode-selection {
+  text-align: center;
+}
+.btn-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Accordion Step Styling */
+.accordion-step {
+  border-bottom: 1px solid #444;
+}
+.accordion-step:last-child {
+  border-bottom: none;
+}
+.reverse-step,
+.forward-step {
+  display: none; /* Hide all steps initially */
+}
+.accordion-step.visible {
+  display: block; /* JS will make the correct steps visible */
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  padding: 25px 10px;
+  cursor: pointer;
+}
+.step-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #666;
+  margin-right: 20px;
+  transition: color 0.4s ease;
+}
+.step-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #ccc;
+  transition: color 0.4s ease;
+}
+.accordion-step.active .step-number {
+  color: #185b3a;
+}
+.accordion-step.active .step-header h2 {
+  color: #fff;
+}
+.accordion-step.unlocked .step-header:hover h2 {
+  color: #fff;
+}
+.step-body {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 10px;
+  transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+}
+.accordion-step.active .step-body {
+  max-height: 600px; /* Increased height for more content */
+  padding: 10px 10px 30px 10px;
+}
+
+/* Input & Button Styles */
+.input-group {
+  margin-bottom: 35px;
+}
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #aaa;
+}
+.input-group input[type="number"],
+.input-group select {
+  width: 100%;
+  padding: 12px 5px;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #555;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-bottom-color: #185b3a;
+}
+
+/* NEW: Toggle Switch for Sick Leave */
+.toggle-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #555;
+  transition: 0.4s;
+  border-radius: 28px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #185b3a;
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.btn-text {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: normal;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.btn-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+.btn-text:hover {
+  color: #ccc;
+}
+.btn-text:hover::after {
+  background-color: #ccc;
+}
+.btn-arrow {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #555;
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.btn-arrow:hover {
+  border-color: #fff;
+}
+.next-btn::after,
+.prev-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+}
+.next-btn::after {
+  transform: translate(-75%, -50%) rotate(45deg);
+}
+.prev-btn::after {
+  transform: translate(-25%, -50%) rotate(-135deg);
+}
+
+/* NEW: Result Styles */
+.result-summary {
+  background: #201f28;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.result-summary div {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+}
+.result-summary div:last-child {
+  border-bottom: none;
+}
+.result-summary strong {
+  color: #185b3a;
+}
+.result-details h3 {
+  margin-top: 30px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+}
+.result-details ul {
+  list-style: none;
+  padding: 0;
+}
+.result-details li {
+  padding: 5px 0;
+}
+.goal-info {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(24, 91, 58, 0.2);
+  border-left: 3px solid #185b3a;
+  border-radius: 3px;
+}
+.pension-result {
+  font-size: 2rem;
+  text-align: center;
+}

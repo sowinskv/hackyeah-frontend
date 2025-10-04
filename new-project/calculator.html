@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Emerytalny</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="calculator.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">ZUS - Symulator emerytalny</div>
+      <nav class="nav-links">
+        <ul>
+          <li><a href="main.html">HOME</a></li>
+          <li><a href="#">ABOUT</a></li>
+          <li><a href="signup.html">SIGN UP</a></li>
+        </ul>
+        <ul>
+          <li><a href="calculator.html">CALCULATOR</a></li>
+          <li><a href="login.html">LOGIN</a></li>
+        </ul>
+      </nav>
+      <div class="contact-info">
+        AVAILABLE FOR YOU <br />
+        <span>ZUS@ME</span> <br />
+        <a href="#">SEND INFORMATION INQUIRY</a>
+      </div>
+    </header>
+
+    <div class="calculator-container">
+      <div id="mode-selection">
+        <h1>Wybierz cel symulacji</h1>
+        <div class="btn-group-vertical">
+          <button class="btn-text" id="forward-mode-btn">
+            Oblicz moją prognozę
+          </button>
+          <button class="btn-text" id="reverse-mode-btn">
+            Jak osiągnąć cel?
+          </button>
+        </div>
+      </div>
+
+      <form id="stepper-form" style="display: none">
+        <div class="accordion-step forward-step" data-step="0">
+          <div class="step-header">
+            <span class="step-number">01</span>
+            <h2>Podstawowe dane</h2>
+          </div>
+          <div class="step-body">
+            <div class="input-group">
+              <label for="age">Twój obecny wiek</label
+              ><input type="number" id="age" required />
+            </div>
+            <div class="input-group">
+              <label for="sex">Płeć</label
+              ><select id="sex">
+                <option value="female">Kobieta</option>
+                <option value="male">Mężczyzna</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="salary">Miesięczne zarobki (brutto w PLN)</label
+              ><input type="number" id="salary" required />
+            </div>
+            <button
+              type="button"
+              class="btn-arrow next-btn"
+              aria-label="Dalej"
+            ></button>
+          </div>
+        </div>
+
+        <div class="accordion-step forward-step" data-step="1">
+          <div class="step-header">
+            <span class="step-number">02</span>
+            <h2>Historia pracy</h2>
+          </div>
+          <div class="step-body">
+            <div class="input-group">
+              <label for="start-year">Rok rozpoczęcia pracy</label
+              ><input type="number" id="start-year" required />
+            </div>
+            <div class="input-group">
+              <label for="end-year">Planowany rok przejścia na emeryturę</label
+              ><input type="number" id="end-year" required />
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn-arrow prev-btn"
+                aria-label="Wstecz"
+              ></button>
+              <button
+                type="button"
+                class="btn-arrow next-btn"
+                aria-label="Dalej"
+              ></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-step forward-step" data-step="2">
+          <div class="step-header">
+            <span class="step-number">03</span>
+            <h2>Dodatkowe informacje (opcjonalne)</h2>
+          </div>
+          <div class="step-body">
+            <div class="input-group">
+              <label for="accumulated">Zgromadzone środki w ZUS</label
+              ><input type="number" id="accumulated" placeholder="0" />
+            </div>
+            <div class="input-group">
+              <label for="pension-goal"
+                >Twoja docelowa emerytura (PLN/miesiąc)</label
+              ><input type="number" id="pension-goal" placeholder="np. 4000" />
+            </div>
+            <div class="input-group toggle-group">
+              <label for="sick-leave">Uwzględnij okresy chorobowe</label
+              ><label class="switch"
+                ><input type="checkbox" id="sick-leave" /><span
+                  class="slider"
+                ></span
+              ></label>
+            </div>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn-arrow prev-btn"
+                aria-label="Wstecz"
+              ></button>
+              <button type="submit" class="btn-text">Oblicz prognozę</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-step forward-step result-step" data-step="3">
+          <div class="step-header">
+            <span class="step-number">04</span>
+            <h2>Twoja prognoza</h2>
+          </div>
+          <div class="step-body">
+            <div class="result-summary">
+              <div>
+                Prognoza nominalna: <strong id="actual-pension"></strong>
+              </div>
+              <div>
+                Prognoza realna (po inflacji):
+                <strong id="real-pension"></strong>
+              </div>
+              <div>
+                Stopa zastąpienia: <strong id="replacement-rate"></strong>
+              </div>
+              <div>
+                Porównanie do średniej:
+                <strong id="average-comparison"></strong>
+              </div>
+            </div>
+            <div class="result-details">
+              <h3>Opóźnienie emerytury</h3>
+              <ul>
+                <li>o 1 rok: <strong id="delay-1-year"></strong></li>
+                <li>o 2 lata: <strong id="delay-2-year"></strong></li>
+                <li>o 5 lat: <strong id="delay-5-year"></strong></li>
+              </ul>
+              <div id="work-longer-info" class="goal-info"></div>
+            </div>
+            <button type="button" class="btn-text" id="start-over-btn">
+              Zacznij od nowa
+            </button>
+          </div>
+        </div>
+
+        <div class="accordion-step reverse-step" data-step="0">
+          <div class="step-header">
+            <span class="step-number">01</span>
+            <h2>Określ swój cel</h2>
+          </div>
+          <div class="step-body">
+            <div class="input-group">
+              <label for="desired-pension"
+                >Docelowa emerytura (PLN/miesiąc)</label
+              ><input type="number" id="desired-pension" required />
+            </div>
+            <div class="input-group">
+              <label for="rev-age">Twój obecny wiek</label
+              ><input type="number" id="rev-age" required />
+            </div>
+            <div class="input-group">
+              <label for="rev-retirement-age"
+                >W jakim wieku chcesz przejść na emeryturę?</label
+              ><input
+                type="number"
+                id="rev-retirement-age"
+                value="65"
+                required
+              />
+            </div>
+            <button type="submit" class="btn-text">Pokaż co robić</button>
+          </div>
+        </div>
+
+        <div class="accordion-step reverse-step result-step" data-step="1">
+          <div class="step-header">
+            <span class="step-number">02</span>
+            <h2>Twoja droga do celu</h2>
+          </div>
+          <div class="step-body">
+            <div class="result-summary">
+              Aby osiągnąć <strong id="goal-value"></strong> emerytury, Twoje
+              średnie zarobki brutto powinny wynosić:
+              <div class="pension-result">
+                <strong id="required-salary"></strong>
+              </div>
+            </div>
+            <button type="button" class="btn-text" id="start-over-btn-rev">
+              Zacznij od nowa
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="calculator.js"></script>
+  </body>
+</html>

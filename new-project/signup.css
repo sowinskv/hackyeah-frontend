@@ -1,0 +1,491 @@
+/* Signup Page Styles - Consistent with Project Design */
+
+body {
+  margin: 0;
+  font-family: "DM Sans", Arial, sans-serif;
+  color: #fff;
+  background-color: #201f28;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Navbar Styles - Consistent with other pages */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 50px;
+  background-color: transparent;
+  position: fixed;
+  width: calc(100% - 100px);
+  top: 0;
+  z-index: 1000;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 80px;
+}
+
+.nav-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links ul li {
+  margin-bottom: 5px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ccc;
+}
+
+.contact-info {
+  text-align: right;
+  line-height: 1.5;
+}
+
+.contact-info span {
+  font-weight: bold;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Main Signup Container */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 20px 40px; /* Top padding for navbar */
+  box-sizing: border-box;
+}
+
+.signup-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: none;
+}
+
+/* Logo Section */
+.logo-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.signup-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.logo-section h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0 0 8px 0;
+  color: #fff;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form Styles */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.form-row .input-group {
+  margin-bottom: 0;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #aaa;
+  font-weight: 400;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 5px;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #555;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-bottom-color: #fff;
+}
+
+.input-group input::placeholder {
+  color: #777;
+  font-style: italic;
+}
+
+/* Ensure all input types have the same styling */
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="tel"],
+.input-group input[type="date"],
+.input-group input[type="password"] {
+  width: 100%;
+  padding: 12px 5px;
+  font-size: 1.1rem;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #555;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="email"]:focus,
+.input-group input[type="tel"]:focus,
+.input-group input[type="date"]:focus,
+.input-group input[type="password"]:focus {
+  outline: none;
+  border-bottom-color: #fff;
+}
+
+/* Password Requirements */
+.password-requirements {
+  margin-top: 8px;
+  margin-left: 5px;
+}
+
+.password-requirements small {
+  color: #aaa;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #aaa;
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #555;
+  border-radius: 2px;
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+  border-color: #fff;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+/* Submit Button */
+.signup-btn {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 16px 32px;
+  border-radius: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.signup-btn:hover {
+  background: #fff;
+  color: #201f28;
+  transform: scale(1.02);
+}
+
+.signup-btn:active {
+  transform: scale(0.98);
+}
+
+.signup-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(32, 31, 40, 0.3);
+  border-top: 2px solid #201f28;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Login Link */
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-link p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* Social Signup */
+.social-signup {
+  margin-top: 32px;
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 32px 0;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #555;
+}
+
+.divider span {
+  background: #201f28;
+  padding: 0 16px;
+  color: #aaa;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 0;
+  color: #aaa;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+.google-btn:hover {
+  background: rgba(66, 133, 244, 0.1);
+  border-color: rgba(66, 133, 244, 0.3);
+}
+
+.facebook-btn:hover {
+  background: rgba(24, 119, 242, 0.1);
+  border-color: rgba(24, 119, 242, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 20px 30px;
+    width: calc(100% - 60px);
+  }
+
+  .nav-links {
+    display: none; /* Hide complex nav on mobile */
+  }
+
+  .signup-container {
+    padding: 100px 16px 40px;
+  }
+
+  .signup-card {
+    padding: 30px 16px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-row .input-group {
+    margin-bottom: 32px;
+  }
+  .logo-section h1 {
+    font-size: 1.75rem;
+  }
+
+  .social-buttons {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 15px 20px;
+    width: calc(100% - 40px);
+  }
+
+  .contact-info {
+    display: none; /* Hide contact info on very small screens */
+  }
+
+  .signup-card {
+    padding: 24px 20px;
+  }
+
+  .signup-logo {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .signup-btn,
+  .social-btn,
+  .checkmark,
+  .input-group input {
+    transition: none;
+  }
+
+  .spinner {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .signup-card {
+    border: 2px solid #fff;
+  }
+
+  .input-group input {
+    border: 2px solid #fff;
+  }
+
+  .checkmark {
+    border: 2px solid #fff;
+  }
+}

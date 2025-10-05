@@ -97,9 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Update UI based on connection status
         showConnectionStatus(true);
-
-        // Set up real-time statistics if available
-        loadLatestStatistics();
       } else {
         console.warn("API client not available");
         showConnectionStatus(false);
@@ -156,87 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       indicator.style.background = "rgba(239, 68, 68, 0.9)";
     }
-  }
-
-  async function loadLatestStatistics() {
-    try {
-      if (!window.RetirementAPI) return;
-
-      // Fetch latest calculation statistics from backend
-      const reports = await window.RetirementAPI.getReports();
-
-      if (reports && reports.length > 0) {
-        updateStatisticsDisplay(reports);
-        console.log(`Loaded ${reports.length} calculation reports`);
-      }
-    } catch (error) {
-      console.log("Statistics not available:", error.message);
-      // Don't show error to user - statistics are optional
-    }
-  }
-
-  function updateStatisticsDisplay(reports) {
-    // Calculate basic statistics
-    const totalCalculations = reports.length;
-    const avgAge =
-      reports.reduce((sum, r) => sum + (r.age || 0), 0) / totalCalculations;
-    const avgSalary =
-      reports.filter((r) => r.salary).reduce((sum, r) => sum + r.salary, 0) /
-      reports.filter((r) => r.salary).length;
-
-    // Find or create statistics section
-    let statsSection = document.querySelector(".live-statistics");
-
-    if (!statsSection) {
-      statsSection = document.createElement("div");
-      statsSection.className = "live-statistics";
-      statsSection.style.cssText = `
-        background: rgba(24, 91, 58, 0.1);
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 8px;
-        border-left: 4px solid #185b3a;
-      `;
-
-      // Insert after hero section
-      const heroSection = document.querySelector(".hero-section");
-      if (heroSection && heroSection.parentNode) {
-        heroSection.parentNode.insertBefore(
-          statsSection,
-          heroSection.nextSibling
-        );
-      }
-    }
-
-    statsSection.innerHTML = `
-      <h3 style="color: #185b3a; margin: 0 0 15px 0; font-size: 18px;">
-        📊 Statystyki na żywo
-      </h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
-        <div style="text-align: center;">
-          <div style="font-size: 24px; font-weight: bold; color: #185b3a;">${totalCalculations}</div>
-          <div style="font-size: 12px; color: #666;">Obliczeń dzisiaj</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 24px; font-weight: bold; color: #185b3a;">${Math.round(
-            avgAge
-          )}</div>
-          <div style="font-size: 12px; color: #666;">Średni wiek</div>
-        </div>
-        ${
-          avgSalary
-            ? `
-        <div style="text-align: center;">
-          <div style="font-size: 24px; font-weight: bold; color: #185b3a;">${formatCurrency(
-            avgSalary
-          )}</div>
-          <div style="font-size: 12px; color: #666;">Średnie wynagrodzenie</div>
-        </div>
-        `
-            : ""
-        }
-      </div>
-    `;
   }
 
   function formatCurrency(value) {

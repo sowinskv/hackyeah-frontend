@@ -24,6 +24,10 @@ class AuthManager {
     }
 
     // Check authentication status and update UI
+    console.log("🔄 AuthManager: Checking initial auth status...");
+    const initialAuthStatus = this.isAuthenticated();
+    console.log("🔐 AuthManager: Initial auth status:", initialAuthStatus);
+
     this.updateAuthenticationUI();
 
     // Set up automatic token refresh
@@ -81,6 +85,14 @@ class AuthManager {
   }
 
   /**
+   * Check if user is an administrator
+   * All authenticated users are treated as administrators
+   */
+  isAdministrator() {
+    return this.isAuthenticated();
+  }
+
+  /**
    * Perform logout
    */
   logout() {
@@ -119,21 +131,24 @@ class AuthManager {
    */
   updateNavigationLinks(isAuthenticated) {
     const loginLinks = document.querySelectorAll('a[href*="login"]');
-    const protectedLinks = document.querySelectorAll("");
+    // No protected links currently - all pages are accessible
+    const protectedLinks = [];
 
     loginLinks.forEach((link) => {
       if (isAuthenticated) {
         // Hide login link when authenticated
         link.style.display = "none";
+        console.log("🔐 AuthManager: Login link hidden");
       } else {
         // Show login link when not authenticated
         link.style.display = "";
-        link.textContent = "LOGIN";
+        link.textContent = "LOGOWANIE";
         link.onclick = null;
+        console.log("🔐 AuthManager: Login link shown");
       }
     });
 
-    // Show/hide protected links
+    // Show/hide protected links (currently none)
     protectedLinks.forEach((link) => {
       if (!isAuthenticated) {
         link.style.opacity = "0.5";
@@ -164,7 +179,7 @@ class AuthManager {
       }
 
       userDisplay.innerHTML = `
-        <span class="user-greeting">Witaj, ${user.username}</span>
+        <span class="user-greeting">Administrator: ${user.username}</span>
         <button class="logout-btn" onclick="authManager.logout()">Wyloguj</button>
       `;
       userDisplay.style.display = "flex";
@@ -223,21 +238,24 @@ class AuthManager {
    * Set up automatic token refresh
    */
   setupTokenRefresh() {
-    // Check token expiration every 5 minutes
+    // Check token expiration every 2 minutes
     setInterval(() => {
       if (this.isAuthenticated()) {
         const expiresAt = localStorage.getItem("token_expires_at");
         if (expiresAt) {
           const timeUntilExpiry = parseInt(expiresAt) - Date.now();
 
-          // If token expires in less than 10 minutes, try to refresh
-          if (timeUntilExpiry < 10 * 60 * 1000 && timeUntilExpiry > 0) {
-            console.log("Token expiring soon, attempting refresh...");
+          // If token expires in less than 5 minutes, try to refresh
+          if (timeUntilExpiry < 5 * 60 * 1000 && timeUntilExpiry > 0) {
+            console.log("🔄 Token expiring soon, attempting refresh...");
             this.refreshToken();
+          } else if (timeUntilExpiry <= 0) {
+            console.log("❌ Token expired, logging out...");
+            this.logout();
           }
         }
       }
-    }, 5 * 60 * 1000); // Check every 5 minutes
+    }, 2 * 60 * 1000); // Check every 2 minutes
   }
 
   /**

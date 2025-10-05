@@ -167,11 +167,22 @@ class ZUSApiClient {
     const expiresAt = localStorage.getItem("token_expires_at");
 
     if (!token || !expiresAt) {
+      console.log("🔐 Auth check: No token or expiry found");
       return false;
     }
 
-    // Check if token is expired (with 5 minute buffer)
-    return Date.now() < parseInt(expiresAt) - 5 * 60 * 1000;
+    const now = Date.now();
+    const expiry = parseInt(expiresAt);
+    const timeLeft = expiry - now;
+
+    console.log("🔐 Auth check:", {
+      timeLeft: Math.round(timeLeft / 1000 / 60), // minutes
+      hasToken: !!token,
+      isValid: now < expiry,
+    });
+
+    // Check if token is expired (no buffer for now)
+    return now < expiry;
   }
 
   /**

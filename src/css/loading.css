@@ -42,7 +42,7 @@ body {
 
 /* UPDATED: No border or padding */
 .loading-image {
-  width: 150px; /* Adjust size as needed */
+  width: 300px; /* Adjust size as needed */
   height: auto;
   margin: 0 20px; /* Space between bars and image */
 }
@@ -107,7 +107,7 @@ body {
 }
 
 .logo {
-  width: 25%; /* Make logo 4 times smaller (100% / 4 = 25%) */
+  width: 50; /* Make logo 4 times smaller (100% / 4 = 25%) */
   height: auto;
   max-width: 100px; /* Set a reasonable maximum size */
 }

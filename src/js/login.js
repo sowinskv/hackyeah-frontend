@@ -71,8 +71,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log("Login successful:", response);
 
-      // Redirect to calculator immediately after successful login
-      window.location.href = "/src/pages/calculator.html";
+      // Debug: Check token expiration details
+      const tokenExpiry = localStorage.getItem("token_expires_at");
+      if (tokenExpiry) {
+        const expiryDate = new Date(parseInt(tokenExpiry));
+        const timeLeft = parseInt(tokenExpiry) - Date.now();
+        console.log("🔐 Token Details:", {
+          expiresAt: expiryDate.toLocaleString(),
+          timeLeftMinutes: Math.round(timeLeft / 1000 / 60),
+          expiresIn: response.expires_in,
+          timeLeftHours: Math.round(timeLeft / 1000 / 60 / 60),
+        });
+
+        // If token expires in less than 1 hour, extend it for testing
+        if (timeLeft < 60 * 60 * 1000) {
+          const newExpiry = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+          localStorage.setItem("token_expires_at", newExpiry.toString());
+          console.log("🔧 Extended token expiry to 24 hours for testing");
+        }
+      }
+
+      // Small delay to ensure token is properly stored before redirect
+      setTimeout(() => {
+        window.location.href = "/src/pages/calculator.html";
+      }, 100);
     } catch (error) {
       console.error("Login error:", error);
 
@@ -315,3 +337,45 @@ window.forceLogout = function () {
   console.log("✅ All auth data cleared");
   location.reload();
 };
+
+// Debug function to check token status - call from console: window.checkTokenStatus()
+window.checkTokenStatus = function () {
+  const token = localStorage.getItem("access_token");
+  const expiresAt = localStorage.getItem("token_expires_at");
+  const now = Date.now();
+
+  if (!token || !expiresAt) {
+    console.log("❌ No token found");
+    return;
+  }
+
+  const expiry = parseInt(expiresAt);
+  const timeLeft = expiry - now;
+
+  console.log("🔐 Token Status:", {
+    hasToken: !!token,
+    expiresAt: new Date(expiry).toLocaleString(),
+    timeLeftMinutes: Math.round(timeLeft / 1000 / 60),
+    isValid: timeLeft > 0,
+    isAuthenticated: window.AuthAPI ? window.AuthAPI.isAuthenticated() : false,
+  });
+};
+
+// Debug function to extend token for testing - call from console: window.extendToken(hours)
+window.extendToken = function (hours = 24) {
+  const newExpiry = Date.now() + hours * 60 * 60 * 1000;
+  localStorage.setItem("token_expires_at", newExpiry.toString());
+  console.log(
+    `✅ Token extended by ${hours} hours until ${new Date(
+      newExpiry
+    ).toLocaleString()}`
+  );
+};
+
+// Auto-monitor authentication status every 30 seconds
+setInterval(() => {
+  if (window.checkTokenStatus) {
+    console.log("🔍 Auto auth check:");
+    window.checkTokenStatus();
+  }
+}, 30000);

@@ -118,14 +118,11 @@ class AuthManager {
 
     loginLinks.forEach((link) => {
       if (isAuthenticated) {
-        // Change login link to logout
-        link.textContent = "WYLOGUJ";
-        link.onclick = (e) => {
-          e.preventDefault();
-          this.logout();
-        };
+        // Hide login link when authenticated
+        link.style.display = "none";
       } else {
-        // Restore original login link
+        // Show login link when not authenticated
+        link.style.display = "";
         link.textContent = "LOGIN";
         link.onclick = null;
       }

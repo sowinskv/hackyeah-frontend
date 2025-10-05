@@ -1,0 +1,60 @@
+/**
+ * Scrolling Fun Facts Footer Component
+ * Inspired by the provided screenshot, adapted for the ZUS color palette.
+ */
+
+.scrolling-footer {
+  /* CHANGED: Switched to the green from your site's gradient */
+  background-color: #185b3a;
+  height: 120px;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.scrolling-footer__track {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: scroll-left 60s linear infinite;
+}
+
+.scrolling-footer__content {
+  display: flex;
+  align-items: center;
+}
+
+.scrolling-footer__text {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  /* CHANGED: Text color updated for better contrast against green */
+  color: #e0e0e0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 25px;
+}
+
+/* RENAMED & UPDATED: This class now styles the ZUS logo */
+.scrolling-footer__logo {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  margin: 0 15px;
+  object-fit: contain; /* Ensures the logo scales nicely */
+  /* ADDED: This CSS filter inverts the colors and turns the logo white */
+  filter: brightness(0) invert(1);
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

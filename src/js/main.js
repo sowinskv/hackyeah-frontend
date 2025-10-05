@@ -84,6 +84,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   // --- ▲▲▲ END OF NEW TYPING ANIMATION CODE ▲▲▲ ---
 
+  // --- ▼▼▼ SCROLL INDICATOR HIDE FUNCTIONALITY ▼▼▼ ---
+  const scrollIndicator = document.querySelector(".scroll-indicator");
+
+  function handleScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollIndicator) {
+      if (scrollTop > 100) {
+        // Hide scroll indicator when user scrolls down more than 100px
+        scrollIndicator.style.opacity = "0";
+        scrollIndicator.style.transform = "translateY(20px)";
+      } else {
+        // Show scroll indicator when at the top
+        scrollIndicator.style.opacity = "1";
+        scrollIndicator.style.transform = "translateY(0)";
+      }
+    }
+  }
+
+  // Add scroll event listener
+  window.addEventListener("scroll", handleScroll);
+
+  // Initial check in case page loads scrolled
+  handleScroll();
+  // --- ▲▲▲ END OF SCROLL INDICATOR FUNCTIONALITY ▲▲▲ ---
+
   /**
    * Backend Integration Functions
    */

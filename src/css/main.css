@@ -95,15 +95,19 @@ body {
 }
 
 .scroll-indicator {
-  position: absolute;
+  position: fixed;
   bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   text-align: center;
   font-size: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 100;
+  pointer-events: none;
 }
 
 .arrow-down {
@@ -113,6 +117,35 @@ body {
   border-right: 5px solid transparent;
   border-top: 5px solid #fff;
   margin-top: 5px;
+}
+
+/* Calculator-style button for CTA */
+.btn-text {
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff !important;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: bold;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 4px;
+  z-index: 9999;
+}
+
+/* Removed ::after underline effect since we're using bordered button */
+
+.btn-text:hover {
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
 }
 
 #chart-container {
@@ -178,6 +211,8 @@ body {
 
 .combined-section-wrapper {
   background: radial-gradient(circle at center, #185b3a 0%, #201f28 60%);
+  position: relative;
+  z-index: 1;
 }
 
 .decorative-section {
@@ -234,6 +269,7 @@ body {
   /* UPDATED: Increased height from 50vh to 100vh */
   min-height: 100vh;
   background: transparent;
+  z-index: 1000;
 }
 
 .cta-buttons-container {
@@ -241,7 +277,9 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 25vh;
+  margin-top: 50vh;
+  position: relative;
+  z-index: 9998;
 }
 
 .cta-link {

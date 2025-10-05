@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const facts = await getFunFactsFromBackend();
-      // CHANGED: Path now points to your ZUS logo
-      const logoIconPath = "../assets/logo_nobg.png";
+      // Path to logo in public folder
+      const logoIconPath = "/logo_nobg.png";
 
       // Create a document fragment to build the content efficiently
       const contentFragment = document.createDocumentFragment();

@@ -141,9 +141,9 @@ body {
 
 /* Removed ::after underline effect since we're using bordered button */
 
-.btn-text:hover {
-  color: #fff !important;
-  background-color: rgba(0, 0, 0, 0.6);
+.cta-link.btn-text:hover {
+  color: transparent white !important;
+  background-color: transparent !important;
   border-color: rgba(255, 255, 255, 1);
   transform: translateY(-2px);
 }

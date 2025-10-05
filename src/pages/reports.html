@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raporty - ZUS Symulator emerytalny</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/calculator.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">ZUS - Symulator emerytalny</div>
+      <nav class="nav-links">
+        <ul>
+          <li><a href="/src/pages/index.html">HOME</a></li>
+          <li><a href="/src/pages/reports.html">REPORTS</a></li>
+          <li><a href="/src/pages/calculator.html">CALCULATOR</a></li>
+          <li><a href="/src/pages/login.html">LOGIN</a></li>
+        </ul>
+      </nav>
+      <div class="contact-info">
+        AVAILABLE FOR YOU <br />
+        <span>ZUS@ME</span> <br />
+        <a href="#">SEND INFORMATION INQUIRY</a>
+      </div>
+    </header>
+
+    <div class="calculator-container">
+      <!-- Content for authenticated administrators -->
+      <div id="reports-content" style="display: none">
+        <h1>Panel Administratora - Raporty</h1>
+        <p>Witaj w panelu administratora. Funkcjonalność pobierania raportów będzie wkrótce dostępna.</p>
+        <!-- Future download functionality will go here -->
+      </div>
+
+      <!-- Content for non-authenticated users -->
+      <div id="auth-required-message" style="display: none">
+        <h1>Ta funkcja dostępna jest tylko dla administratorów.</h1>
+        <div class="login-prompt">
+          <a href="/src/pages/login.html" class="btn-text login-btn">
+            Zaloguj się
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/reports.js"></script>
+  </body>
+</html>

@@ -378,3 +378,29 @@ input:checked + .slider:before {
   }
 }
 
+/* Reports page login prompt styling */
+.login-prompt {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.login-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff !important;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #fff;
+  color: #201f28 !important;
+  transform: translateY(-2px);
+}

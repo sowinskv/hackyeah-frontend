@@ -16,6 +16,13 @@ class AuthManager {
   }
 
   init() {
+    // Check for logout parameter in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("logout") === "true") {
+      this.logout();
+      return;
+    }
+
     // Check authentication status and update UI
     this.updateAuthenticationUI();
 
@@ -112,9 +119,7 @@ class AuthManager {
    */
   updateNavigationLinks(isAuthenticated) {
     const loginLinks = document.querySelectorAll('a[href*="login"]');
-    const protectedLinks = document.querySelectorAll(
-      'a[href*="calculator"], a[href*="reports"]'
-    );
+    const protectedLinks = document.querySelectorAll("");
 
     loginLinks.forEach((link) => {
       if (isAuthenticated) {
@@ -198,8 +203,7 @@ class AuthManager {
   checkPageAccess() {
     const currentPath = window.location.pathname;
     const protectedPages = [
-      "/src/pages/calculator.html",
-      "/src/pages/reports.html",
+      // No protected pages currently - calculator and reports are accessible to all
     ];
     const isProtectedPage = protectedPages.some((page) =>
       currentPath.includes(page)

@@ -16,8 +16,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const passwordInput = document.getElementById("password");
   const submitButton = document.querySelector(".signup-btn");
 
-  // Check if already authenticated
-  if (window.AuthAPI.isAuthenticated()) {
+  // Check authentication status with debugging
+  const isAuthViaAPI = window.AuthAPI
+    ? window.AuthAPI.isAuthenticated()
+    : false;
+  const isAuthViaManager = window.authManager
+    ? window.authManager.isAuthenticated()
+    : false;
+
+  console.log("Login page - Auth check:", {
+    AuthAPI: isAuthViaAPI,
+    authManager: isAuthViaManager,
+    hasToken: !!localStorage.getItem("access_token"),
+  });
+
+  // Only redirect if actually authenticated
+  if (isAuthViaAPI && isAuthViaManager) {
     console.log("User already authenticated, redirecting...");
     window.location.href = "/src/pages/calculator.html";
     return;
@@ -277,3 +291,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   console.log("✅ Login page integration loaded successfully");
 });
+
+// Debug function to force logout - call from console: window.forceLogout()
+window.forceLogout = function () {
+  console.log("🔄 Force logout called");
+
+  // Clear all localStorage items
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
+  localStorage.removeItem("token_expires_at");
+  localStorage.removeItem("user_info");
+
+  // Clear via API if available
+  if (window.AuthAPI) {
+    window.AuthAPI.logout();
+  }
+
+  // Clear via authManager if available
+  if (window.authManager) {
+    window.authManager.apiClient.logout();
+  }
+
+  console.log("✅ All auth data cleared");
+  location.reload();
+};

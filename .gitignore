@@ -1,0 +1,9 @@
+node_modules
+# Ignore node_modules directory
+.DS_Store
+# Ignore macOS system files
+.vscode
+# Ignore VSCode settings directory
+dist
+.env
+*.log

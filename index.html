@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symulator emerytalny</title>
+    <link rel="stylesheet" href="./src/css/loading.css" />
+  </head>
+  <body>
+    <div class="loading-container">
+      <div class="header-text">
+        DATA SCIENCE CLUB <br />
+        PJAIT
+      </div>
+
+      <div class="loading-content-horizontal">
+        <div class="loading-bar-wrapper left">
+          <div class="loading-progress-text">0%</div>
+          <div class="loading-bar">
+            <div class="loading-fill-left"></div>
+          </div>
+        </div>
+
+        <div class="logo-wrapper">
+          <img src="/logo_nobg.png" alt="Logo" class="logo" />
+        </div>
+
+        <div class="loading-bar-wrapper right">
+          <div class="loading-bar">
+            <div class="loading-fill-right"></div>
+          </div>
+          <div class="loading-progress-text">0%</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Loading animation
+      let progress = 0;
+      const progressTexts = document.querySelectorAll(".loading-progress-text");
+      const fillLeft = document.querySelector(".loading-fill-left");
+      const fillRight = document.querySelector(".loading-fill-right");
+
+      const interval = setInterval(() => {
+        progress += Math.random() * 15 + 5; // Random increment between 5-20
+        if (progress > 100) progress = 100;
+
+        progressTexts.forEach((text) => {
+          text.textContent = Math.floor(progress) + "%";
+        });
+
+        if (fillLeft && fillRight) {
+          fillLeft.style.width = progress + "%";
+          fillRight.style.width = progress + "%";
+        }
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            window.location.href = "./src/pages/index.html";
+          }, 500);
+        }
+      }, 150);
+    </script>
+  </body>
+</html>

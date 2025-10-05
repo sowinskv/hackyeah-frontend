@@ -105,3 +105,9 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.logo {
+  width: 25%; /* Make logo 4 times smaller (100% / 4 = 25%) */
+  height: auto;
+  max-width: 100px; /* Set a reasonable maximum size */
+}

@@ -160,6 +160,25 @@ body {
   box-sizing: border-box;
   transition: border-color 0.3s ease;
 }
+
+/* Custom select dropdown styling */
+.input-group select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.input-group select option {
+  background-color: #201f28;
+  color: #fff;
+  padding: 8px;
+}
 .input-group input:focus,
 .input-group select:focus {
   outline: none;

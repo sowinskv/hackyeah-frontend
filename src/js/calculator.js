@@ -515,10 +515,6 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor: pointer;
     }
     
-    .accordion-step.active .step-header {
-      background-color: rgba(24, 91, 58, 0.1);
-    }
-    
     button:disabled {
       opacity: 0.6;
       cursor: not-allowed;

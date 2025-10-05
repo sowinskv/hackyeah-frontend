@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <form id="stepper-form" style="display: none">
+      <form id="stepper-form" style="display: none" novalidate>
         <div class="accordion-step forward-step" data-step="0">
           <div class="step-header">
             <span class="step-number">01</span>
@@ -52,18 +52,18 @@
           <div class="step-body">
             <div class="input-group">
               <label for="age">Twój obecny wiek</label
-              ><input type="number" id="age" required />
+              ><input type="number" id="age" name="age" required />
             </div>
             <div class="input-group">
               <label for="sex">Płeć</label
-              ><select id="sex">
+              ><select id="sex" name="sex">
                 <option value="female">Kobieta</option>
                 <option value="male">Mężczyzna</option>
               </select>
             </div>
             <div class="input-group">
               <label for="salary">Miesięczne zarobki (brutto w PLN)</label
-              ><input type="number" id="salary" required />
+              ><input type="number" id="salary" name="salary" required />
             </div>
             <button
               type="button"
@@ -81,11 +81,16 @@
           <div class="step-body">
             <div class="input-group">
               <label for="start-year">Rok rozpoczęcia pracy</label
-              ><input type="number" id="start-year" required />
+              ><input
+                type="number"
+                id="start-year"
+                name="start-year"
+                required
+              />
             </div>
             <div class="input-group">
               <label for="end-year">Planowany rok przejścia na emeryturę</label
-              ><input type="number" id="end-year" required />
+              ><input type="number" id="end-year" name="end-year" required />
             </div>
             <div class="btn-group">
               <button
@@ -110,19 +115,30 @@
           <div class="step-body">
             <div class="input-group">
               <label for="accumulated">Zgromadzone środki w ZUS</label
-              ><input type="number" id="accumulated" placeholder="0" />
+              ><input
+                type="number"
+                id="accumulated"
+                name="accumulated"
+                placeholder="0"
+              />
             </div>
             <div class="input-group">
               <label for="pension-goal"
                 >Twoja docelowa emerytura (PLN/miesiąc)</label
-              ><input type="number" id="pension-goal" placeholder="np. 4000" />
+              ><input
+                type="number"
+                id="pension-goal"
+                name="pension-goal"
+                placeholder="np. 4000"
+              />
             </div>
             <div class="input-group toggle-group">
               <label for="sick-leave">Uwzględnij okresy chorobowe</label
               ><label class="switch"
-                ><input type="checkbox" id="sick-leave" /><span
-                  class="slider"
-                ></span
+                ><input
+                  type="checkbox"
+                  id="sick-leave"
+                  name="sick-leave" /><span class="slider"></span
               ></label>
             </div>
             <div class="btn-group">
@@ -182,11 +198,16 @@
             <div class="input-group">
               <label for="desired-pension"
                 >Docelowa emerytura (PLN/miesiąc)</label
-              ><input type="number" id="desired-pension" required />
+              ><input
+                type="number"
+                id="desired-pension"
+                name="desired-pension"
+                required
+              />
             </div>
             <div class="input-group">
               <label for="rev-age">Twój obecny wiek</label
-              ><input type="number" id="rev-age" required />
+              ><input type="number" id="rev-age" name="rev-age" required />
             </div>
             <div class="input-group">
               <label for="rev-retirement-age"
@@ -194,6 +215,7 @@
               ><input
                 type="number"
                 id="rev-retirement-age"
+                name="rev-retirement-age"
                 value="65"
                 required
               />
@@ -222,6 +244,9 @@
         </div>
       </form>
     </div>
+
+    <!-- Load API Client and Calculator Integration -->
+    <script src="../js/api.js"></script>
     <script src="../js/calculator.js"></script>
   </body>
 </html>

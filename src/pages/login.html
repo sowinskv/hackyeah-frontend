@@ -43,10 +43,10 @@
 
         <!-- Login Form -->
         <form id="login-form" class="signup-form">
-          <!-- Email -->
+          <!-- Username/Email -->
           <div class="input-group">
-            <label for="email">Adres email</label>
-            <input type="email" id="email" name="email" required />
+            <label for="email">Nazwa użytkownika lub email</label>
+            <input type="text" id="email" name="email" required />
           </div>
 
           <!-- Password -->
@@ -117,28 +117,8 @@
       </div>
     </main>
 
-    <script>
-      // Simple login form handling
-      document
-        .getElementById("login-form")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-
-          const submitButton = document.querySelector(".signup-btn");
-          const loadingSpinner = document.querySelector(".loading-spinner");
-          const buttonText = document.querySelector(".btn-text");
-
-          // Show loading state
-          submitButton.disabled = true;
-          buttonText.style.display = "none";
-          loadingSpinner.style.display = "flex";
-
-          // Simulate login
-          setTimeout(() => {
-            alert("Zalogowano pomyślnie! Przekierowanie do strony głównej...");
-            window.location.href = "main.html";
-          }, 1500);
-        });
-    </script>
+    <!-- Load API Client and Login Integration -->
+    <script src="../js/api.js"></script>
+    <script src="../js/login.js"></script>
   </body>
 </html>

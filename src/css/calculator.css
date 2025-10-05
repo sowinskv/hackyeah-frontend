@@ -321,3 +321,40 @@ input:checked + .slider:before {
   font-size: 2rem;
   text-align: center;
 }
+
+/* Error Styles */
+.error {
+  border-color: #ff6b6b !important;
+  background-color: rgba(255, 107, 107, 0.1) !important;
+}
+
+.error:focus {
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.5) !important;
+}
+
+/* Error messages */
+.error-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  max-width: 400px;
+  font-size: 14px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

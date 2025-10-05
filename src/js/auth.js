@@ -181,14 +181,15 @@ class AuthManager {
       display: none;
       align-items: center;
       gap: 10px;
-      margin-left: auto;
       font-size: 12px;
       color: #fff;
+      margin-top: 10px;
     `;
 
-    const navbar = document.querySelector(".navbar");
-    if (navbar) {
-      navbar.appendChild(userDisplay);
+    // Add to contact-info section instead of navbar to maintain layout
+    const contactInfo = document.querySelector(".contact-info");
+    if (contactInfo) {
+      contactInfo.appendChild(userDisplay);
     }
 
     return userDisplay;

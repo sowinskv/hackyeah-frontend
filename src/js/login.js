@@ -56,12 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await window.AuthAPI.login(username, password);
 
       console.log("Login successful:", response);
-      showSuccess("Logowanie zakończone sukcesem!");
 
-      // Redirect to calculator after successful login
-      setTimeout(() => {
-        window.location.href = "/src/pages/calculator.html";
-      }, 1500);
+      // Redirect to calculator immediately after successful login
+      window.location.href = "/src/pages/calculator.html";
     } catch (error) {
       console.error("Login error:", error);
 

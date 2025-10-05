@@ -94,64 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Testing backend connection...");
         await window.apiClient.healthCheck();
         console.log("✅ Backend connection successful");
-
-        // Update UI based on connection status
-        showConnectionStatus(true);
       } else {
         console.warn("API client not available");
-        showConnectionStatus(false);
       }
     } catch (error) {
       console.error("Backend connection failed:", error);
-      showConnectionStatus(false);
-    }
-  }
-
-  function showConnectionStatus(isConnected) {
-    // Create or update connection indicator
-    let indicator = document.querySelector(".connection-status");
-
-    if (!indicator) {
-      indicator = document.createElement("div");
-      indicator.className = "connection-status";
-      indicator.style.cssText = `
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 12px;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        transition: all 0.3s ease;
-      `;
-      document.body.appendChild(indicator);
-    }
-
-    if (isConnected) {
-      indicator.innerHTML = `
-        <span style="color: #22c55e;">●</span>
-        <span style="color: #fff;">Połączono z serwerem</span>
-      `;
-      indicator.style.background = "rgba(34, 197, 94, 0.9)";
-
-      // Hide after 3 seconds
-      setTimeout(() => {
-        indicator.style.opacity = "0";
-        setTimeout(() => {
-          if (indicator.parentNode) {
-            indicator.remove();
-          }
-        }, 300);
-      }, 3000);
-    } else {
-      indicator.innerHTML = `
-        <span style="color: #ef4444;">●</span>
-        <span style="color: #fff;">Brak połączenia</span>
-      `;
-      indicator.style.background = "rgba(239, 68, 68, 0.9)";
     }
   }
 

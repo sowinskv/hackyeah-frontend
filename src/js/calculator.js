@@ -330,12 +330,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "Powyżej średniej krajowej"
         : "Poniżej średniej krajowej";
     updateElement("average-comparison", vsAverage);
-
-    showSuccess(
-      `Obliczenia zakończone! Twoja przewidywana emerytura to ${formatCurrency(
-        results.realistic_retirement_income
-      )}.`
-    );
   }
 
   function displayReverseResults(results) {
@@ -352,12 +346,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const monthlyNeeded = results.funds_left_to_collect / (yearsLeft * 12);
 
     updateElement("monthly-savings", formatCurrency(monthlyNeeded));
-
-    showSuccess(
-      `Plan emerytalny wygenerowany! Musisz oszczędzać ${formatCurrency(
-        monthlyNeeded
-      )} miesięcznie.`
-    );
   }
 
   /**
